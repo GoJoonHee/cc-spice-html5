@@ -202,6 +202,29 @@ function sendEnter(sc) {
     }
 }
 
+/*----------------------------------------------------------------------------
+**  press enter key just for active display device
+**      from chenchen
+**--------------------------------------------------------------------------*/
+function sendCtrlAltF5(sc) {
+    if (sc && sc.inputs && sc.inputs.state === "ready") {
+        var key = new Messages.SpiceMsgcKeyDown();
+        var msg = new Messages.SpiceMiniData();
+
+        update_modifier(true, KeyNames.KEY_LCtrl, sc);
+        update_modifier(true, KeyNames.KEY_Alt, sc);
+
+        key.code = KeyNames.KEY_F5;
+        msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_DOWN, key);
+        sc.inputs.send_msg(msg);
+        msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_UP, key);
+        sc.inputs.send_msg(msg);
+
+        if (Ctrl_state == false) update_modifier(false, KeyNames.KEY_LCtrl, sc);
+        if (Alt_state == false) update_modifier(false, KeyNames.KEY_Alt, sc);
+    }
+}
+
 function update_modifier(state, code, sc) {
     var msg = new Messages.SpiceMiniData();
     if (!state) {
@@ -277,5 +300,6 @@ export {
     handle_keydown,
     handle_keyup,
     sendCtrlAltDel,
-    sendEnter
+    sendEnter,
+    sendCtrlAltF5
 };
