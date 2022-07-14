@@ -192,25 +192,13 @@ function sendCtrlAltDel(sc) {
 }
 
 /*----------------------------------------------------------------------------
-**  press any key just for active display device
+**  press enter key just for active display device
 **      from chenchen
 **--------------------------------------------------------------------------*/
-function sendCtrlAltF1(sc) {
+function sendEnter(sc) {
     if (sc && sc.inputs && sc.inputs.state === "ready") {
-        var key = new Messages.SpiceMsgcKeyDown();
-        var msg = new Messages.SpiceMiniData();
-
-        update_modifier(true, KeyNames.KEY_LCtrl, sc);
-        update_modifier(true, KeyNames.KEY_Alt, sc);
-
-        key.code = KeyNames.KEY_F1;
-        msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_DOWN, key);
-        sc.inputs.send_msg(msg);
-        msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_UP, key);
-        sc.inputs.send_msg(msg);
-
-        if (Ctrl_state == false) update_modifier(false, KeyNames.KEY_LCtrl, sc);
-        if (Alt_state == false) update_modifier(false, KeyNames.KEY_Alt, sc);
+        update_modifier(true, KeyNames.KEY_Enter, sc);
+        update_modifier(false, KeyNames.KEY_Enter, sc);
     }
 }
 
@@ -289,5 +277,5 @@ export {
     handle_keydown,
     handle_keyup,
     sendCtrlAltDel,
-    sendCtrlAltF1
+    sendEnter
 };

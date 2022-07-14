@@ -182,7 +182,7 @@
 
         document.getElementById('connectButton').onclick = connect;
         document.getElementById('sendCtrlAltDel').addEventListener('click', function(){ SpiceHtml5.sendCtrlAltDel(sc); });
-        document.getElementById('sendCtrlAltF1').addEventListener('click', function(){ SpiceHtml5.sendCtrlAltF1(sc); });
+        document.getElementById('sendEnter').addEventListener('click', function(){ SpiceHtml5.sendEnter(sc); });
         window.onload = connect
         </script>
 
@@ -201,7 +201,7 @@
         <label for="password">Password:</label> <input type='password' id='password' value=''><br> -->
             <button id="connectButton">Start Connection</button><br>
             <button id="sendCtrlAltDel">Send Ctrl-Alt-Delete</button>
-            <button id="sendCtrlAltF1">Send Ctrl-Alt-F1</button>
+            <button id="sendEnter">Send Enter</button>
             <button id="debugLogs">Toggle Debug Logs</button>
             <div id="message-div" class="spice-message" style="display: none;"></div>
 
