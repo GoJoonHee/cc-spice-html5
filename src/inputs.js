@@ -195,7 +195,7 @@ function sendCtrlAltDel(sc) {
 **  press any key just for active display device
 **      from chenchen
 **--------------------------------------------------------------------------*/
-function sendCtrlAltEnter(sc) {
+function sendCtrlAltF1(sc) {
     if (sc && sc.inputs && sc.inputs.state === "ready") {
         var key = new Messages.SpiceMsgcKeyDown();
         var msg = new Messages.SpiceMiniData();
@@ -203,7 +203,7 @@ function sendCtrlAltEnter(sc) {
         update_modifier(true, KeyNames.KEY_LCtrl, sc);
         update_modifier(true, KeyNames.KEY_Alt, sc);
 
-        key.code = KeyNames.KEY_Enter;
+        key.code = KeyNames.KEY_F1;
         msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_DOWN, key);
         sc.inputs.send_msg(msg);
         msg.build_msg(Constants.SPICE_MSGC_INPUTS_KEY_UP, key);
@@ -289,5 +289,5 @@ export {
     handle_keydown,
     handle_keyup,
     sendCtrlAltDel,
-    sendCtrlAltEnter
+    sendCtrlAltF1
 };
