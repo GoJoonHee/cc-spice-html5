@@ -195,17 +195,6 @@ function sendCtrlAltDel(sc) {
 **  press enter key just for active display device
 **      from chenchen
 **--------------------------------------------------------------------------*/
-function sendEnter(sc) {
-    if (sc && sc.inputs && sc.inputs.state === "ready") {
-        update_modifier(true, KeyNames.KEY_Enter, sc);
-        update_modifier(false, KeyNames.KEY_Enter, sc);
-    }
-}
-
-/*----------------------------------------------------------------------------
-**  press enter key just for active display device
-**      from chenchen
-**--------------------------------------------------------------------------*/
 function sendCtrlAltF5(sc) {
     if (sc && sc.inputs && sc.inputs.state === "ready") {
         var key = new Messages.SpiceMsgcKeyDown();
@@ -300,6 +289,5 @@ export {
     handle_keydown,
     handle_keyup,
     sendCtrlAltDel,
-    sendEnter,
     sendCtrlAltF5
 };
