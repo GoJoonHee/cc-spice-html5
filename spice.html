@@ -183,7 +183,9 @@
         document.getElementById('connectButton').onclick = connect;
         document.getElementById('sendCtrlAltDel').addEventListener('click', function(){ SpiceHtml5.sendCtrlAltDel(sc); });
         document.getElementById('sendEnter').addEventListener('click', function(){ SpiceHtml5.sendEnter(sc); });
-        document.getElementById('sendCtrlAltF5').addEventListener('click', function(){ SpiceHtml5.sendCtrlAltF5(sc);location.reload(); });
+        document.getElementById('sendCtrlAltF5').addEventListener('click', function(){ SpiceHtml5.sendCtrlAltF5(sc);setTimeout(function(){
+            location.reload(true);
+        },1000); });
         window.onload = connect
         </script>
 
