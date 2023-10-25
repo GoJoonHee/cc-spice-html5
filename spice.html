@@ -104,13 +104,20 @@
             // secret = resp.dataUrl;
 
             //uri = scheme + host + ":" + port;
-            host = map.get("host");
-            port = map.get("port");
-            operationId = map.get("operationId");
-            secret = map.get("secret");
+            host = map.get("host"); //这是nginx的ip
+            port = map.get("port"); //这是nginx的端口
+            operationId = map.get("operationId"); //这是lxd需要的operationId
+            secret = map.get("secret"); //这是lxd需要的secret
+
+            proxyPassIp = map.get("proxyPassIp"); //这是nginx代理了的后端服务器IP地址
+            proxyPassPort = map.get("proxyPassPort"); //这是nginx代理了的后端服务器端口
+            certId = map.get("certId"); //这是对应lxdserver的客户端ssl证书id名
 
             //uri = "wss://" + "172.31.18.253" + ":" + "8443" + "/1.0/operations/"+operationId+"/websocket?secret="+secret;
-            uri = "wss://" + host + ":" + port + "/1.0/operations/"+operationId+"/websocket?secret="+secret;
+            // uri = "wss://" + host + ":" + port + "/1.0/operations/"+operationId+"/websocket?secret="+secret;
+
+            uri = "wss://" + host + ":" + port + "/1.0/operations/" + operationId + "/websocket?secret=" + secret 
+            + '&proxyPassIp=' + proxyPassIp + '&proxyPassPort=' + proxyPassPort + '&certId=' + certId;
            
             console.log(uri)
             document.getElementById('connectButton').innerHTML = "Stop Connection";
