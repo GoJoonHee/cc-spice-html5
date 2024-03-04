@@ -85,7 +85,7 @@
             }
 
             var operationId , secret;
-            var proxyPassIp, proxyPassPort, certId;
+            var clusterId, proxyPassIp, proxyPassPort, certId;
             // let resp = await fetch("http://127.0.0.1:54321/cd/web/rel/resourcepool/res/container/getConsoleConnectInfo",{
             //     method: 'post',
             //     headers : {
@@ -110,6 +110,7 @@
             operationId = map.get("operationId"); //这是lxd需要的operationId
             secret = map.get("secret"); //这是lxd需要的secret
 
+            clusterId = map.get("clusterId"); //这是nginx配置文件中需要的clusterId
             proxyPassIp = map.get("proxyPassIp"); //这是nginx代理了的后端服务器IP地址
             proxyPassPort = map.get("proxyPassPort"); //这是nginx代理了的后端服务器端口
             certId = map.get("certId"); //这是对应lxdserver的客户端ssl证书id名
@@ -118,9 +119,9 @@
             // uri = "wss://" + host + ":" + port + "/1.0/operations/"+operationId+"/websocket?secret="+secret;
 
             uri = "wss://" + host + ":" + port + "/1.0/operations/" + operationId + "/websocket?secret=" + secret 
-            + '&proxyPassIp=' + proxyPassIp + '&proxyPassPort=' + proxyPassPort + '&certId=' + certId;
+            + '&clusterId=' + clusterId + '&proxyPassIp=' + proxyPassIp + '&proxyPassPort=' + proxyPassPort + '&certId=' + certId;
            
-            console.log(uri)
+            console.log(uri);
             document.getElementById('connectButton').innerHTML = "Stop Connection";
             document.getElementById('connectButton').onclick = disconnect;
 
